@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from app.database import SessionLocal
-from app.models import Instrument
+from .database import SessionLocal
+from .models import Instrument
 
 
 def start_db():

@@ -2,7 +2,7 @@ from fastapi import FastAPI, Depends
 from .database import engine, Base
 from .routers import users, instruments, balances, orders, public_transactions
 from .dependencies import check_auth_headers
-from .initialize_db import initialize_base_currency
+from .db_start import start_db
 
 
 description = """

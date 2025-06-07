@@ -20,16 +20,16 @@ class OrderSide(str, enum.Enum):
 
 
 class OrderStatus(str, enum.Enum):
-    OPEN = "OPEN"
-    PARTIALLY_FILLED = "PARTIALLY_FILLED"
-    FILLED = "FILLED"
+    NEW = "NEW"
+    EXECUTED = "EXECUTED"
+    PARTIALLY_EXECUTED = "PARTIALLY_EXECUTED"
     CANCELLED = "CANCELLED"
 
 
 class User(Base):
     __tablename__ = "users"
 
-    id = Column(String, primary_key=True, index=True, default=lambda: str(uuid4()))
+    id = Column(String, primary_key=True, default=lambda: str(uuid4()), unique=True, nullable=False)
     name = Column(String, nullable=False)
     email = Column(String, unique=True, index=True, nullable=False)
     hashed_password = Column(String, nullable=False)
@@ -86,7 +86,7 @@ class Order(Base):
     price = Column(Numeric(precision=18, scale=8), nullable=True)  # NULL для Market ордеров
     filled_quantity = Column(Numeric(precision=18, scale=8), default=0)
 
-    status = Column(Enum(OrderStatus), default=OrderStatus.OPEN)
+    status = Column(Enum(OrderStatus), default=OrderStatus.NEW)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 

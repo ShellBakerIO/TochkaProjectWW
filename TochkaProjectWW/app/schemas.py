@@ -10,7 +10,7 @@ class NewUser(BaseModel):
     name: str = Field(..., min_length=3)
 
 
-class UserRole(str, Enum):
+class UserRole(Enum):
     USER = "USER"
     ADMIN = "ADMIN"
 
@@ -203,9 +203,9 @@ class OrderSide(str, Enum):
 
 
 class OrderStatus(str, Enum):
-    OPEN = "OPEN"
-    PARTIALLY_FILLED = "PARTIALLY_FILLED"
-    FILLED = "FILLED"
+    NEW = "NEW"
+    EXECUTED = "EXECUTED"
+    PARTIALLY_EXECUTED = "PARTIALLY_EXECUTED"
     CANCELLED = "CANCELLED"
 
 

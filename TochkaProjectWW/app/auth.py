@@ -26,7 +26,7 @@ def generate_api_key() -> str:
     Формат: toy_xxxxxxxxxxxxxxxxxxxx (всего 27 символов)
     """
     # Создаем префикс для более легкой идентификации
-    prefix = "toy"
+    prefix = "WW"
 
     # Создаем случайную строку из 20 символов (буквы и цифры)
     alphabet = string.ascii_letters + string.digits

@@ -70,7 +70,7 @@ def get_orderbook(
 protected_router = APIRouter(prefix="/api/v1/order", tags=["order"])
 
 
-@protected_router.post("", response_model=schemas.OrderOut)
+@protected_router.post("", response_model=schemas.CreateOrderResponse)
 def create_order(
     order: schemas.OrderCreate,
     current_user: models.User = Depends(get_current_user),
@@ -172,7 +172,7 @@ def create_order(
     
     db.refresh(new_order)
     
-    return new_order
+    return {"order_id": new_order.id}
 
 
 @protected_router.get("", response_model=List[schemas.OrderOut])

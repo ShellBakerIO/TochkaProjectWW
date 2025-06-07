@@ -8,7 +8,6 @@ from .db_start import start_db
 app = FastAPI(
     title="WW Биржа",
     version="0.1.0",
-    description=description,
 )
 
 app.openapi_components = {
@@ -57,7 +56,7 @@ async def debug_headers(headers_info: dict = Depends(check_auth_headers)):
 
 Base.metadata.create_all(bind=engine)
 
-initialize_base_currency()
+start_db()
 app.include_router(users.router)
 app.include_router(users.protected_router)
 app.include_router(users.admin_router)
